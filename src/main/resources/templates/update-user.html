@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layout.html}">
+  <head>
+    <title>Actualizar usuarios</title>
+    
+  </head>
+  <body>
+    <!-- /* Content of this page will be decorated by the elements of layout.html (task/layout) */ -->
+    <div layout:fragment="content">
+
+        <a th:href="@{/user/index}" class="btn btn-default">Atras</a>
+
+        <form action="#" th:action="@{/user/update/{id} (id=${user.id})}" th:object="${user}" method="POST">
+
+            <div class="form-group">
+                <label>CC</label>
+                <input type="text" class="form-control" th:field="*{numeroCc}" placeholder="número" id="numeroCc">
+            </div>
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" class="form-control" th:field="*{nombre}" placeholder="nombre" id="nombre">
+            </div>
+
+            <div class="form-group">
+                <label>Apellido</label>
+                <input type="text" class="form-control" th:field="*{apellido}" placeholder="apellido" id="apellido">
+            </div>
+
+            <div class="form-group">
+                <label>Rol</label>
+                <select th:field=*{role} class="form-control">
+                    <option value="">Seleccione un rol</option>
+                    <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.nombre}"></option>
+
+                </select>
+            </div>
+
+            <input type="submit" class="btn btn-primary" value="Actualizar">
+        </form>
+
+
+    </div>
+  </body>
+</html>        

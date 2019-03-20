@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layout.html}">
+  <head>
+    <title>Lista de usuarios</title>
+    
+  </head>
+  <body>
+    <!-- /* Content of this page will be decorated by the elements of layout.html (task/layout) */ -->
+    <div layout:fragment="content">
+
+        <div th:switch="${users}">
+            <h2 th:case="null">No hay usuarios registrados</h2>
+            <div th:case="*">
+                <h2>Listado de usuarios</h2>
+
+                <a th:href="@{/user/create}" class="btn btn-primary">Nuevo usuario</a>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>NOMBRE</th>
+                            <th>APELLIDO</th>
+                            <th>ROL</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="user : ${users}">
+                            <td th:text="${user.id}"></td>
+                            <td th:text="${user.nombre}"></td>
+                            <td th:text="${user.apellido}"></td>
+                            <td th:text="${user.role.nombre}"></td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a th:href="@{/user/edit/{id} (id=${user.id})}" class="btn btn-primary">Editar</a>
+                                    <a th:href="@{/user/delete/{id} (id=${user.id})}" class="btn btn-danger">Eliminar</a>
+                                </div>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+
+
+     </div>      
+
+
+    </body> 
+</html>   
